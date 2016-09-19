@@ -1,0 +1,10 @@
+﻿@{ 
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<ul>
+    @foreach (var category in Model)
+    {
+        <li><a asp-controller="Categories" asp-action="Details" asp-route-id="@category.CategoryId">@category.Name</a> </li>
+    }
+</ul>
+<a asp-controller="Categories" asp-action="Create">Create Category</a> 

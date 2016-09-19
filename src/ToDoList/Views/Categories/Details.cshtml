@@ -1,0 +1,49 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model IEnumerable<ToDoList.Models.Item>
+<h2>@ViewBag.Category.Name</h2>
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Done)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category.Name)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var listItem in Model)
+        {
+            <tr>
+                <td class="check-box">
+                    @if (listItem.Done)
+                    {
+                        <a asp-controller="Categories" asp-action="Check" asp-route-id="@listItem.ItemId">@Html.Raw("\u2611")</a>
+                    }
+                    else
+                    {
+                        <a asp-controller="Categories" asp-action="Check" asp-route-id="@listItem.ItemId">@Html.Raw("\u2610")</a>
+
+                    }
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => listItem.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => listItem.Category.Name)
+                </td>
+                <td>
+                    <a asp-controller="Items" asp-action="Edit" asp-route-id="@listItem.ItemId">Edit</a> |
+                    <a asp-controller="Items" asp-action="Details" asp-route-id="@listItem.ItemId">Details</a> |
+                    <a asp-controller="Items" asp-action="Delete" asp-route-id="@listItem.ItemId">Delete</a>
+                </td>
+            </tr>
+        }
+    </table>
