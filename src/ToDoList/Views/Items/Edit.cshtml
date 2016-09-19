@@ -14,8 +14,12 @@
     @Html.LabelFor(model => model.Description)
     @Html.EditorFor(model => model.Description)
 
-    @Html.LabelFor(model => model.CategoryId)
-    @Html.DropDownList("CategoryId")
+    <select asp-for="CategoryId">
+        @foreach (var category in ViewBag.Categories)
+        {
+            <option value="@category.CategoryId">@category.Name</option>
+        }
+    </select>
 
     <input type="submit" value="Save" class="btn btn-default" />
 }
